@@ -18,9 +18,9 @@
         // código js
         
         // declarando variaveis linkados com elementos html
-        var lista = document.getElementById("lista");
-        var campo = document.getElementById("campo");
-        var botao = document.getElementById("botão");
+        var elLista = document.getElementById("lista");
+        var elCampo = document.getElementById("campo");
+        var elBotao = document.getElementById("botão");
 
         // declarando array em JSON
         var convidados = [
@@ -28,6 +28,19 @@
             { id: 2, nome: "Jefferson Andrade", idade: 18 },
             { id: 3, nome: "Maria Josépha", idade: 13 }
         ]
+
+        // percorre a lista em JSON 'convidados' 
+        for (convidado of convidados) {
+            // cria um elemento html li
+            var elConvidado = document.createElement("li");
+            // cria um texto com o valor da key nome
+            var elNome = document.createTextNode(convidado.nome);
+
+            // elNome está inserindo elementos em elConvidado 
+            elConvidado.appendChild(elNome);
+            // elConvidado está inserindo elementos em elLista
+            elLista.appendChild(elConvidado);
+        }
         </script>
     </body>
 </html>
