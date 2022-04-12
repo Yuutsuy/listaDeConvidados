@@ -11,8 +11,8 @@
             <h1>Lista de Convidados</h1>
             <ul id="lista"></ul>
             
-            <input type="text" placeholder="Digite o nome do convidado" id="campo">
-            <input type="text" placeholder="Digite o nome do convidado" id="campo">
+            <input type="text" placeholder="Digite o nome do convidado" class="campo">
+            <input type="number" placeholder="Digite o nome do convidado" class="campo">
             <button id="botao">Cadastrar</button>
         </div>
 
@@ -21,7 +21,7 @@
         
         // declarando variaveis linkados com elementos html
         var elLista = document.getElementById("lista");
-        var elCampo = document.getElementById("campo");
+        var elCampo = document.getElementsByClassName("campo");
         var elBotao = document.getElementById("botao");
 
         // declarando array em JSON
@@ -39,10 +39,10 @@
                 // cria um elemento html li para cada convidado
                 var elConvidado = document.createElement("li");
                 // criando variaveis e linkando por id
-                var elNome = document.createTextNode(convidado.nome);
+                var elConv = document.createTextNode(`${convidado.nome}, ${convidado.idade}`);
 
-                // elNome está inserindo elementos em elConvidado
-                elConvidado.appendChild(elNome);
+                // inserindo elementos em elConvidado
+                elConvidado.appendChild(elConv);
                 // elConvidado está inserindo elementos em elLista
                 elLista.appendChild(elConvidado);
             }
@@ -56,7 +56,7 @@
             // colocando o valor dos campos na variável nome
             var nome = elCampo.value;
             // adicionando id, nome e idade na lista convidados
-            convidados.push({ nome: nome });
+            convidados.push({ nome: nome, idade: idade });
             // limpando o campo
             elCampo.value = "";
             // chamando a função listarConvidados
