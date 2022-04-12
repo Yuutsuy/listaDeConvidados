@@ -33,11 +33,11 @@
         for (convidado of convidados) {
             // cria um elemento html li
             var elConvidado = document.createElement("li");
-            // cria um texto com o valor da key nome
-            var elNome = document.createTextNode(convidado.nome);
+            // cria um texto com o valor da key nome & key idade em um template
+            var elConv = document.createTextNode(`${convidado.nome}, ${convidado.idade} anos`);
 
             // elNome está inserindo elementos em elConvidado 
-            elConvidado.appendChild(elNome);
+            elConvidado.appendChild(elConv);
             // elConvidado está inserindo elementos em elLista
             elLista.appendChild(elConvidado);
         }
