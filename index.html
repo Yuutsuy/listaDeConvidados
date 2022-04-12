@@ -3,15 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./main.css">
         <title>Lista de Convidados</title>
     </head>
     <body>
         <div id="app">
             <h1>Lista de Convidados</h1>
             <ul id="lista"></ul>
-
-            <input type="text" placeholder="Digite o nome do convidado">
-            <button>Cadastrar</button>
+            
+            <input type="text" placeholder="Digite o nome do convidado" id="campo">
+            <input type="text" placeholder="Digite o nome do convidado" id="campo">
+            <button id="botao">Cadastrar</button>
         </div>
 
         <script type="text/javascript">
@@ -20,7 +22,7 @@
         // declarando variaveis linkados com elementos html
         var elLista = document.getElementById("lista");
         var elCampo = document.getElementById("campo");
-        var elBotao = document.getElementById("botão");
+        var elBotao = document.getElementById("botao");
 
         // declarando array em JSON
         var convidados = [
@@ -28,19 +30,41 @@
             { id: 2, nome: "Jefferson Andrade", idade: 18 },
             { id: 3, nome: "Maria Josépha", idade: 13 }
         ]
+        
+        function listarConvidados() {
+            elLista.innterHTML = "";
 
-        // percorre a lista em JSON 'convidados' 
-        for (convidado of convidados) {
-            // cria um elemento html li
-            var elConvidado = document.createElement("li");
-            // cria um texto com o valor da key nome & key idade em um template
-            var elConv = document.createTextNode(`${convidado.nome}, ${convidado.idade} anos`);
+            // percorre a lista em JSON 'convidados' 
+            for (convidado of convidados) {
+                // cria um elemento html li para cada convidado
+                var elConvidado = document.createElement("li");
+                // criando variaveis e linkando por id
+                var elNome = document.createTextNode(convidado.nome);
 
-            // elNome está inserindo elementos em elConvidado 
-            elConvidado.appendChild(elConv);
-            // elConvidado está inserindo elementos em elLista
-            elLista.appendChild(elConvidado);
+                // elNome está inserindo elementos em elConvidado
+                elConvidado.appendChild(elNome);
+                // elConvidado está inserindo elementos em elLista
+                elLista.appendChild(elConvidado);
+            }
         }
+
+        // chamando a função de listarConvidados
+        listarConvidados();
+
+        // criando função de adicionarConvidado
+        var adicionarConvidado = function() {
+            // colocando o valor dos campos na variável nome
+            var nome = elCampo.value;
+            // adicionando id, nome e idade na lista convidados
+            convidados.push({ nome: nome });
+            // limpando o campo
+            elCampo.value = "";
+            // chamando a função listarConvidados
+            listarConvidados();
+            
+        }
+
+        elBotao.onclick = adicionarConvidado;
         </script>
     </body>
 </html>

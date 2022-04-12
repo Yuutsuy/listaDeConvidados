@@ -1,0 +1,9 @@
+#app ul {
+    list-style-type: none;
+}
+#app {
+    padding: 30px;
+}
+#app input {
+    display:block;
+}
