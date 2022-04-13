@@ -7,3 +7,7 @@
 #app input {
     display:block;
 }
+#app ul a{
+    color:red;
+    margin-left: 30px;
+}
