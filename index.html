@@ -11,8 +11,8 @@
             <h1>Lista de Convidados</h1>
             <ul id="lista"></ul>
             
-            <input type="text" placeholder="Digite o nome do convidado" class="campo">
-            <input type="number" placeholder="Digite o nome do convidado" class="campo">
+            <input type="text" placeholder="Digite o nome do convidado" id="campo1">
+            <input type="text" placeholder="Digite a idade do convidado" id="campo2">
             <button id="botao">Cadastrar</button>
         </div>
 
@@ -21,7 +21,8 @@
         
         // declarando variaveis linkados com elementos html
         var elLista = document.getElementById("lista");
-        var elCampo = document.getElementsByClassName("campo");
+        var elCampo1 = document.getElementById("campo1");
+        var elCampo2 = document.getElementById("campo2");
         var elBotao = document.getElementById("botao");
 
         // declarando array em JSON
@@ -32,39 +33,61 @@
         ]
         
         function listarConvidados() {
-            elLista.innterHTML = "";
+            elLista.innerHTML = "";
 
             // percorre a lista em JSON 'convidados' 
-            for (convidado of convidados) {
+            for (const convidado of convidados) {
                 // cria um elemento html li para cada convidado
                 var elConvidado = document.createElement("li");
-                // criando variaveis e linkando por id
-                var elConv = document.createTextNode(`${convidado.nome}, ${convidado.idade}`);
+                // criando variaveis e linkando por id's
+                var elConv = document.createTextNode(`${convidado.id} - ${convidado.nome}, ${convidado.idade}`);
+
+                // criando variavel elExcluir com tag de link
+                var elExcluir = document.createElement("a");
+                // criando variavel para exibir texto dentro da tag de elExcluir
+                var elTextoExcluir = document.createTextNode("Excluir")
+
+                // criando função excluir
+                elExcluir.onclick = function() {
+                    convidados = convidados.filter(function(item) {
+                        return item.id !== convidado.id;
+                    });
+                    // chamando a função de listarConvidados
+                    listarConvidados();
+                };
 
                 // inserindo elementos em elConvidado
                 elConvidado.appendChild(elConv);
-                // elConvidado está inserindo elementos em elLista
+                elConvidado.appendChild(elExcluir);
+                // inserindo elExcluirTexto ao elExcluir
+                elExcluir.appendChild(elTextoExcluir);
+
+                // inserindo todo o elConvidado em elLista
                 elLista.appendChild(elConvidado);
             }
         }
-
         // chamando a função de listarConvidados
         listarConvidados();
 
         // criando função de adicionarConvidado
-        var adicionarConvidado = function() {
+        elBotao.onclick = function() {
             // colocando o valor dos campos na variável nome
-            var nome = elCampo.value;
-            // adicionando id, nome e idade na lista convidados
-            convidados.push({ nome: nome, idade: idade });
-            // limpando o campo
-            elCampo.value = "";
-            // chamando a função listarConvidados
-            listarConvidados();
-            
-        }
+            var nome = elCampo1.value;
+            var idade = elCampo2.value;
 
-        elBotao.onclick = adicionarConvidado;
+            // criado condição para adicionar id apenas se os campos de nome e idade forem vazios
+            if(nome !== "" && idade !== "") {
+                // declara variável id que recebe o tamanho do array + 1 (pois, o index começa em 0)
+                var id = convidados.length + 1;
+                // adicionando id, nome e idade na lista convidados
+                convidados.push({  id: id, nome: nome, idade: idade});
+                // limpa os campo
+                elCampo1.value = "";
+                elCampo2.value = "";
+                // chamando a função listarConvidados
+                listarConvidados();
+            }
+        };
         </script>
     </body>
 </html>
