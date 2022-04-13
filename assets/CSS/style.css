@@ -1,13 +1,28 @@
+body {
+    background-color:cornflowerblue;
+}
+
+#app {
+    border: 2px solid black;
+    border-radius:25px;
+    box-shadow: 20px 20px 20px;
+    text-align:left;
+    background-color:white;
+}
+
 #app ul {
     list-style-type: none;
-}
-#app {
-    padding: 30px;
-}
-#app input {
-    display:block;
 }
 #app ul a{
     color:red;
     margin-left: 30px;
+    cursor: pointer;
+}
+
+#app input {
+    border-radius:5px;
+}
+
+#app #botao {
+    border-radius:5px;
 }

@@ -10,9 +10,11 @@
         <div id="app">
             <h1>Lista de Convidados</h1>
             <ul id="lista"></ul>
-            
+
             <input type="text" placeholder="Digite o nome do convidado" id="nome">
+            <br/>
             <input type="text" placeholder="Digite a idade do convidado" id="idade">
+            <br/>
             <button id="botao">Cadastrar</button>
         </div>
 
@@ -63,7 +65,7 @@
                 // cria um elemento html li para cada convidado
                 var elConvidado = document.createElement("li");
                 // criando variaveis e linkando por id's
-                var elConv = document.createTextNode(`${convidado.id} - ${convidado.nome}, ${convidado.idade}`);
+                var elConv = document.createTextNode(`${convidado.id} - ${convidado.nome}, ${convidado.idade} anos`);
 
                 // criando variavel elExcluir com tag de link
                 var elExcluir = document.createElement("a");
@@ -74,7 +76,7 @@
                     convidados = convidados.filter(function(item) {
                         return item.id !== convidado.id;
                     });
-                    // chamando a função de listarConvidados
+                    // chamando a função de listarConvidados dentro do for
                     listarConvidados();
                 };
 
